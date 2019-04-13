@@ -2,7 +2,7 @@
 Una api para consumir los metodos php y conectar
 
 # Comentarios
-* solo conecta con la tabla usuario (la cual fue modificada, se unio tabla usuario y persona).
+* CRUD en todas la tablas excepto en tabla historia.
 * Esta ampliamente documentado.
 * En caso de colaborar recomiendo ver: https://www.youtube.com/watch?v=iLRjbGC6jIs&t=747s
 * Recomendado provar con Postman.
