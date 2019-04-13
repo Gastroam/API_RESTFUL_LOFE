@@ -7,7 +7,7 @@ require '../src/config/db.php'; // importamos nuestro gestor de bd para usarlo
 
 $app = new \Slim\app;
 
-// crear las rutas
+// crear las rutas de las tablas
 require '../src/rutas/eventos.php';
 require '../src/rutas/usuarios.php';
 require '../src/rutas/emociones.php';
