@@ -2,11 +2,8 @@
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-$app = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
-
 // *** Inicio GET (Leer)
-
-$app->get('/api/usuarios', function(Request $request, Response $response){ // ruta que usaremos
+$app->get('/api/usuarios', function( $request,  $response){ // ruta que usaremos
 
     $consulta = "SELECT * FROM usuario"; // guardamos nuestro query consulta
 
@@ -44,7 +41,7 @@ $app->get('/api/usuarios', function(Request $request, Response $response){ // ru
 $app->get('/api/usuarios/{id}', function(Request $request, Response $response){ // ruta que usaremos
 
     $id_user = $request->getAttribute('id');
-    $consulta = "SELECT * FROM usuario WHERE idusuario = $id_user"; // guardamos nuestro query consulta
+    $consulta = "SELECT * FROM usuario WHERE idUsuario = $id_user"; // guardamos nuestro query consulta
 
     // ** crear try catch
     try {
@@ -149,7 +146,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
                 nicknameUsuario = :nicknameUsuario,
                 imagenUsuario = :imagenUsuario,
                 contrasenaUsuario = :contrasenaUsuario
-                WHERE idusuario = $id_usuario"; // guardamos nuestro query para modificar
+                WHERE idUsuario = $id_usuario"; // guardamos nuestro query para modificar
     
     // ** crear try catch
     try {
@@ -157,7 +154,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
         // instancia de nuestra clase bd
         $db = new db();
 
-        $db = $db->conectar();  // usamos la funcion conectar de nuestra clase bd
+        $db = $db->conectar();  // usamos la funcion conectar de nuestra clas db
         $ejecutar = $db->prepare($consulta);  // le mandamos el query a la bd para que prepare el resultaro en una variable
         
         // guardar informacion de variables en bd
@@ -193,7 +190,7 @@ $app->delete('/api/usuarios/delete/{id}', function(Request $request, Response $r
     // debemos obtener el id 
    $id_usuario = $request->getAttribute('id'); 
 
-   $consulta = "DELETE FROM usuario WHERE idusuario = $id_usuario"; // guardamos nuestro query para modificar
+   $consulta = "DELETE FROM usuario WHERE idUsuario = $id_usuario"; // guardamos nuestro query para modificar
    
    // ** crear try catch
    try {
@@ -221,6 +218,5 @@ $app->delete('/api/usuarios/delete/{id}', function(Request $request, Response $r
 });  
 
 // ***  final DELETE
-
 
 ?>

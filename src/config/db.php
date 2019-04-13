@@ -1,10 +1,10 @@
 <?php
-
+    // archivo de configuracion contiene una clase con configuraciones del servidor
     class db{
         private $host = 'localhost';
         private $user = 'root';
         private $pass = '';
-        private $base = 'lofev1';
+        private $base = 'lofe';
 
         // conectar a la bd
         public function conectar() {

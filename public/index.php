@@ -5,14 +5,12 @@ use Psr\Http\Message\ResponseInterface as Response;
 require '../vendor/autoload.php';
 require '../src/config/db.php'; // importamos nuestro gestor de bd para usarlo
 
-$app = new \Slim\App;
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-
-    return $response;
-});
+$app = new \Slim\app;
 
 // crear las rutas
-require "../src/rutas/usuarios.php";
+require '../src/rutas/eventos.php';
+require '../src/rutas/usuarios.php';
+require '../src/rutas/emociones.php';
+require '../src/rutas/lugares.php';
+
 $app->run();
