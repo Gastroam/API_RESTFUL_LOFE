@@ -82,11 +82,11 @@ $app->post('/api/usuarios/post', function(Request $request, Response $response){
     $AMAUsuario = $request->getParam('AMAUsuario');
     $correoUsuario = $request->getParam('correoUsuario');
     $nicknameUsuario = $request->getParam('nicknameUsuario');
-    $imagenUsuario = $request->getParam('imagenUsuario');
+    $sexoUsuario = $request->getParam('sexoUsuario');
     $contrasenaUsuario = $request->getParam('contrasenaUsuario');
     
-    $consulta = "INSERT INTO usuario (nombresUsuario, APAUsuario, AMAUsuario, correoUsuario, nicknameUsuario, imagenUsuario, contrasenaUsuario)
-    VALUES(:nombresUsuario, :APAUsuario, :AMAUsuario, :correoUsuario, :nicknameUsuario, :imagenUsuario, :contrasenaUsuario) "; // guardamos nuestro query consulta
+    $consulta = "INSERT INTO usuario (nombresUsuario, APAUsuario, AMAUsuario, correoUsuario, nicknameUsuario, sexoUsuario, contrasenaUsuario)
+    VALUES(:nombresUsuario, :APAUsuario, :AMAUsuario, :correoUsuario, :nicknameUsuario, :sexoUsuario, :contrasenaUsuario) "; // guardamos nuestro query consulta
 
     // ** crear try catch
     try {
@@ -103,14 +103,14 @@ $app->post('/api/usuarios/post', function(Request $request, Response $response){
         $ejecutar->bindParam(':AMAUsuario', $AMAUsuario);
         $ejecutar->bindParam(':correoUsuario', $correoUsuario);
         $ejecutar->bindParam(':nicknameUsuario', $nicknameUsuario);
-        $ejecutar->bindParam(':imagenUsuario', $imagenUsuario);
+        $ejecutar->bindParam(':sexoUsuario', $sexoUsuario);
         $ejecutar->bindParam(':contrasenaUsuario', $contrasenaUsuario);
 
         // una vez preparados los campos ejecutamos
 
         $ejecutar->execute();
 
-        echo json_encode('Cliente guardado exitosamente');
+         echo json_encode('Cliente guardado exitosamente');
 
         // seteamos a null para cerrar conexion
         $ejecutar = null; 
@@ -135,7 +135,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
     $AMAUsuario = $request->getParam('AMAUsuario');
     $correoUsuario = $request->getParam('correoUsuario');
     $nicknameUsuario = $request->getParam('nicknameUsuario');
-    $imagenUsuario = $request->getParam('imagenUsuario');
+    $sexoUsuario = $request->getParam('sexoUsuario');
     $contrasenaUsuario = $request->getParam('contrasenaUsuario');
 
     $consulta = "UPDATE usuario SET
@@ -144,7 +144,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
                 AMAUsuario = :AMAUsuario,
                 correoUsuario = :correoUsuario,
                 nicknameUsuario = :nicknameUsuario,
-                imagenUsuario = :imagenUsuario,
+                sexoUsuario = :sexoUsuario,
                 contrasenaUsuario = :contrasenaUsuario
                 WHERE idUsuario = $id_usuario"; // guardamos nuestro query para modificar
     
@@ -163,7 +163,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
         $ejecutar->bindParam(':AMAUsuario', $AMAUsuario);
         $ejecutar->bindParam(':correoUsuario', $correoUsuario);
         $ejecutar->bindParam(':nicknameUsuario', $nicknameUsuario);
-        $ejecutar->bindParam(':imagenUsuario', $imagenUsuario);
+        $ejecutar->bindParam(':sexoUsuario', $sexoUsuario);
         $ejecutar->bindParam(':contrasenaUsuario', $contrasenaUsuario);
 
         // una vez preparados los campos ejecutamos
