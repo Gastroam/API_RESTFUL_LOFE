@@ -39,6 +39,7 @@ $app->get('/api/eventos', function($request,  $response){
 $app->post('/api/eventos/post', function(Request $request, Response $response) {
 
     // crear varibles a incertar
+    $Usuario = $request->getParam('Usuario');
     $NombreEvento = $request->getParam('NombreEvento');
     $Descripcion = $request->getParam('Descripcion');
     $Imagen = $request->getParam('Imagen');
@@ -47,7 +48,7 @@ $app->post('/api/eventos/post', function(Request $request, Response $response) {
     $Emocion_idEmocion = $request->getParam('Emocion_idEmocion');
     $Usuario_idUsuario = $request->getParam('Usuario_idUsuario');
 
-    $query = "INSERT INTO evento (NombreEvento, Descripcion, Imagen, Fecha, Lugar_idLugar, Emocion_idEmocion, Usuario_idUsuario) VALUES (:NombreEvento, :Descripcion, :Imagen, :Fecha, :Lugar_idLugar, :Emocion_idEmocion, :Usuario_idUsuario)";
+    $query = "INSERT INTO evento (Usuario, NombreEvento, Descripcion, Imagen, Fecha, Lugar_idLugar, Emocion_idEmocion, Usuario_idUsuario) VALUES (:Usuario, :NombreEvento, :Descripcion, :Imagen, :Fecha, :Lugar_idLugar, :Emocion_idEmocion, :Usuario_idUsuario)";
 
 
     try {
@@ -60,6 +61,7 @@ $app->post('/api/eventos/post', function(Request $request, Response $response) {
         $consulta = $db->prepare($query);
 
         // preparamos los datos
+        $consulta->bindParam(':Usuario', $Usuario);
         $consulta->bindParam(':NombreEvento', $NombreEvento);
         $consulta->bindParam(':Descripcion', $Descripcion);
         $consulta->bindParam(':Imagen', $Imagen);
