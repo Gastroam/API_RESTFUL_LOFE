@@ -35,6 +35,40 @@ $app->get('/api/eventos', function($request,  $response){
 });
 // *** FINAL GET
 
+// *** Inicio GET POR USUARIO
+
+$app->get('/api/eventos/{id}', function($request,  $response){
+    
+    $idEvento = $request->getAttribute('id');
+    $query = "SELECT idEvento,Usuario,NombreEvento,Descripcion,Emocion_idEmocion FROM evento WHERE Usuario = $idEvento";
+
+    try {
+        // instanciar clase bd
+        $db = new db();
+
+        $db = $db->conectar(); // usamos el metodo conectar
+        $consulta = $db->query($query); // le mandamos el query a la consulta
+
+        if ( $consulta->rowCount() > 0 ) { // si el contenido de la consulta es mayor a 0
+
+            $eventos = $consulta->fetchAll(PDO::FETCH_OBJ);
+            echo json_encode($eventos);
+
+        } else {
+            echo json_encode('El usuario no tiene eventos');
+        }
+
+        // cerramos la consulta
+        $consulta = null;
+        $db = null;
+
+    } catch ( PDOException $e ) {
+        echo '{"error": {"text": '.$e->getMessage().'}';
+    } 
+    
+});
+// *** FINAL GET POR USUARIO
+
 // *** INICIO POST
 $app->post('/api/eventos/post', function(Request $request, Response $response) {
 

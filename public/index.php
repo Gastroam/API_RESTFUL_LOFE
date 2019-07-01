@@ -12,5 +12,6 @@ require '../src/rutas/eventos.php';
 require '../src/rutas/usuarios.php';
 require '../src/rutas/emociones.php';
 require '../src/rutas/lugares.php';
+require '../src/rutas/cuestionarios.php';
 
 $app->run();
