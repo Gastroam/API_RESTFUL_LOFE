@@ -39,8 +39,9 @@ $app->post('/api/cuestionarios/post', function(Request $request, Response $respo
     // crear varibles a incertar
     $usuario_idUsuario = $request->getParam('usuario_idUsuario');
     $cuestionarioPParte = $request->getParam('cuestionarioPParte');
+    $cuestionarioFecha = $request->getParam('cuestionarioFecha');
 
-    $query = "INSERT INTO cuestionario (usuario_idUsuario, cuestionarioPParte) VALUES (:usuario_idUsuario, :cuestionarioPParte)";
+    $query = "INSERT INTO cuestionario (usuario_idUsuario, cuestionarioPParte,cuestionarioFecha) VALUES (:usuario_idUsuario, :cuestionarioPParte, :cuestionarioFecha)";
 
 
     try {
@@ -55,6 +56,7 @@ $app->post('/api/cuestionarios/post', function(Request $request, Response $respo
         // preparamos los datos
         $consulta->bindParam(':usuario_idUsuario', $usuario_idUsuario);
         $consulta->bindParam(':cuestionarioPParte', $cuestionarioPParte);
+        $consulta->bindParam(':cuestionarioFecha', $cuestionarioFecha);
 
         // ejecutamos la consulta
         $consulta->execute();
@@ -72,15 +74,17 @@ $app->post('/api/cuestionarios/post', function(Request $request, Response $respo
 // *** INICIO POST
 
 // *** INICIO PUT
-$app->put('/api/cuestionarios/post/{id}', function(Request $request, Response $response) {
+$app->put('/api/cuestionarios/post/{id}/{cuestionarioFecha}', function(Request $request, Response $response) {
 
     $usuario_idUsuario = $request->getAttribute('id');
+    $cuestionarioFecha = $request->getAttribute('cuestionarioFecha');
     // crear varibles a incertar
     $cuestionarioSPartel = $request->getParam('cuestionarioSPartel');
 
     $query = "UPDATE cuestionario SET
               cuestionarioSPartel = :cuestionarioSPartel
-              WHERE usuario_idUsuario = $usuario_idUsuario";
+              WHERE usuario_idUsuario = $usuario_idUsuario
+              and cuestionarioFecha = $cuestionarioFecha";
 
     try {
         // intanciar la bd
