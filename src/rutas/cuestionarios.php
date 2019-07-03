@@ -113,5 +113,72 @@ $app->put('/api/cuestionarios/post/{id}/{cuestionarioFecha}', function(Request $
 });
 // *** FINAL PUT
 
+// INICIO GET PPARTE
+$app->get('/api/lugares/{id}/{cuestionarioFecha}', function($request, $response) {
+
+    $usuario_idUsuario = $request->getAttribute('id');
+    $cuestionarioFecha = $request->getAttribute('cuestionarioFecha');
+
+    $query = "SELECT * FROM cuestionario
+              WHERE usuario_idUsuario = $usuario_idUsuario
+              and cuestionarioFecha = $cuestionarioFecha";
+
+    try {
+
+        $db = new db();
+
+        $db = $db->conectar();
+
+        $consulta = $db->query($query);
+
+        if ($consulta->rowCount() > 0) {
+
+            $cuestionarios = $consulta->fetchAll(PDO::FETCH_OBJ);
+            echo json_encode ($cuestionarios);
+        } else {
+            echo json_encode ('No existen elementos');
+        }
+
+        $consulta = null;
+        $db = null;
+    } catch (PDOException $e) {
+        '{"error": {"text": '.$e->getMessage().'}';
+    }
+});
+// FINAL GET PPARTE
+
+// INICIO GET SPARTE
+$app->get('/api/cuestionarios/{id}/{cuestionarioFecha}', function($request, $response) {
+
+    $usuario_idUsuario = $request->getAttribute('id');
+    $cuestionarioFecha = $request->getAttribute('cuestionarioFecha');
+
+    $query = "SELECT cuestionarioSPartel FROM cuestionario
+              WHERE usuario_idUsuario = $usuario_idUsuario
+              and cuestionarioFecha = $cuestionarioFecha";
+
+    try {
+
+        $db = new db();
+
+        $db = $db->conectar();
+
+        $consulta = $db->query($query);
+
+        if ($consulta->rowCount() > 0) {
+
+            $cuestionarios = $consulta->fetchAll(PDO::FETCH_OBJ);
+            echo json_encode ($cuestionarios);
+        } else {
+            echo json_encode ('No existen elementos');
+        }
+
+        $consulta = null;
+        $db = null;
+    } catch (PDOException $e) {
+        '{"error": {"text": '.$e->getMessage().'}';
+    }
+});
+// FINAL GET SPARTE
 
 ?>
