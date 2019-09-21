@@ -84,9 +84,10 @@ $app->post('/api/usuarios/post', function(Request $request, Response $response){
     $nicknameUsuario = $request->getParam('nicknameUsuario');
     $sexoUsuario = $request->getParam('sexoUsuario');
     $contrasenaUsuario = $request->getParam('contrasenaUsuario');
+    $NOCUENTA = $request->getParam('NOCUENTA');
     
-    $consulta = "INSERT INTO usuario (nombresUsuario, APAUsuario, AMAUsuario, correoUsuario, nicknameUsuario, sexoUsuario, contrasenaUsuario)
-    VALUES(:nombresUsuario, :APAUsuario, :AMAUsuario, :correoUsuario, :nicknameUsuario, :sexoUsuario, :contrasenaUsuario) "; // guardamos nuestro query consulta
+    $consulta = "INSERT INTO usuario (nombresUsuario, APAUsuario, AMAUsuario, correoUsuario, nicknameUsuario, sexoUsuario, contrasenaUsuario, NOCUENTA)
+    VALUES(:nombresUsuario, :APAUsuario, :AMAUsuario, :correoUsuario, :nicknameUsuario, :sexoUsuario, :contrasenaUsuario, :NOCUENTA) "; // guardamos nuestro query consulta
 
     // ** crear try catch
     try {
@@ -105,6 +106,7 @@ $app->post('/api/usuarios/post', function(Request $request, Response $response){
         $ejecutar->bindParam(':nicknameUsuario', $nicknameUsuario);
         $ejecutar->bindParam(':sexoUsuario', $sexoUsuario);
         $ejecutar->bindParam(':contrasenaUsuario', $contrasenaUsuario);
+        $ejecutar->bindParam(':NOCUENTA', $NOCUENTA);
 
         // una vez preparados los campos ejecutamos
 
@@ -137,6 +139,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
     $nicknameUsuario = $request->getParam('nicknameUsuario');
     $sexoUsuario = $request->getParam('sexoUsuario');
     $contrasenaUsuario = $request->getParam('contrasenaUsuario');
+    $NOCUENTA = $request->getParam('NOCUENTA');
 
     $consulta = "UPDATE usuario SET
                 nombresUsuario = :nombresUsuario,
@@ -145,7 +148,8 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
                 correoUsuario = :correoUsuario,
                 nicknameUsuario = :nicknameUsuario,
                 sexoUsuario = :sexoUsuario,
-                contrasenaUsuario = :contrasenaUsuario
+                contrasenaUsuario = :contrasenaUsuario,
+                NOCUENTA = :NOCUENTA
                 WHERE idUsuario = $id_usuario"; // guardamos nuestro query para modificar
     
     // ** crear try catch
@@ -165,6 +169,7 @@ $app->put('/api/usuarios/modificar/{id}', function(Request $request, Response $r
         $ejecutar->bindParam(':nicknameUsuario', $nicknameUsuario);
         $ejecutar->bindParam(':sexoUsuario', $sexoUsuario);
         $ejecutar->bindParam(':contrasenaUsuario', $contrasenaUsuario);
+        $ejecutar->bindParam(':NOCUENTA', $NOCUENTA);
 
         // una vez preparados los campos ejecutamos
 
