@@ -98,6 +98,12 @@ CREATE TABLE IF NOT EXISTS `lofe`.`historia` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+INSERT INTO emocion  VALUES (1, "molesto");
+INSERT INTO emocion  VALUES (2, "feliz");
+INSERT INTO emocion  VALUES (3, "raro");
+INSERT INTO emocion  VALUES (4, "aterrador");
+INSERT INTO emocion  VALUES (5, "triste");
 
 -- -----------------------------------------------------
 -- Table `lofe`.`cuestionario`
